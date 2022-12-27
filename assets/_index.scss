@@ -1,0 +1,18 @@
+$blue: #1890ff;
+$colorHeader: rgb(0, 21, 41);
+
+$font-stack: Arial;
+
+.page {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: relative;
+}
+// video {
+//     max-width: 80vw;
+// }
+
+@media (min-width: 500px) {
+    // video {
+    //     width: 80vw;
+    // }
+}

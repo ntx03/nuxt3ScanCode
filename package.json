@@ -11,6 +11,7 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.6",
     "html5-qrcode": "^2.3.4",
     "sass": "^1.56.2"
   }

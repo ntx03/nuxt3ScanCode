@@ -41,11 +41,11 @@ function closeNavigate() {
     width: 40px;
     height: 50px;
     margin: 25px 3% 20px 5%;
-    border: 1px red solid;
 }
 .navigation__link {
     color: white;
     margin: 0 10% 0 auto;
-    //border: 1px red solid;
+    text-decoration: none;
+    font-size: 18px;
 }
 </style>

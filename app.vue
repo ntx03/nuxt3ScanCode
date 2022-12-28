@@ -5,9 +5,6 @@ if (avtorize.value === true) {
     navigateTo("/");
 }
 
-definePageMeta({
-    //layout: "header",
-});
 //const video = document.querySelector("video");
 // if (video) {
 //     console.log(video);

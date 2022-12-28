@@ -15,13 +15,6 @@ watchEffect(() => {
         disabledButton.value = false;
     } else disabledButton.value = true;
 });
-computed(() => {
-    console.log(login.value);
-});
-
-definePageMeta({
-    // middleware: ["auth"],
-});
 </script>
 
 <template>

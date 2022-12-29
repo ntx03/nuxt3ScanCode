@@ -1,15 +1,15 @@
 <template>
     <div class="statictics__find-box-select-container">
-        <!-- <input type="text" class="statictics__find-box-select" v-model="idInput" @click="goWatch" @keyup.enter="closeListError" />
+        <input type="text" class="statictics__find-box-select" v-model="idInput" @click="goWatch" @keyup.enter="closeListError" />
         <div class="statictics__find-box-autocomplit" :class="{ 'statictics__find-box-autocomplit_none': !openList }">
             <p :key="item" v-for="item in choseID" class="statictics__find-box-autocomplit__title" @click="changeID">
                 {{ item }}
             </p>
-        </div> -->
-        <input class="statictics__find-box-select" list="datalistOptions" v-model="idInput" id="exampleDataList" />
-        <datalist style="width: 90%" id="datalistOptions">
-            <option style="width: 200px" :key="item" v-for="item in getUsers">{{ item }}</option>
-        </datalist>
+        </div>
+        <!-- <input autocomplete="off" list="datalistOptions" v-model="idInput" id="exampleDataList" />
+        <datalist id="datalistOptions">
+            <option :key="item" v-for="item in getUsers">{{ item }}</option>
+        </datalist> -->
     </div>
 </template>
 
@@ -27,55 +27,52 @@ const changeID = (e: { target: any }) => {
     idInput.value = e.target.textContent;
     openList.value = false;
 };
-// const goWatch = (): void => {
-//     // choseID = getUsers;
-//     watch(idInput, () => {
-//         openList.value = true;
-//         let errorID = new Set();
+const goWatch = (): void => {
+    // choseID = getUsers;
+    watch(idInput, () => {
+        openList.value = true;
+        let errorID = new Set();
 
-//         if (idInput.value.length < 1) {
-//             choseID = getUsers;
-//         } else {
-//             for (let i = 0; i < getUsers.length; i++) {
-//                 const id = getUsers[i].split(" ");
-//                 console.log(id.join("").toLowerCase());
-//                 console.log(idInput.value.toLowerCase());
-//                 if (id.join("").toLowerCase().includes(idInput.value.toLowerCase()) == true) {
-//                     errorID.add(getUsers[i]);
-//                     // alert(getUsers[i]);
-//                     // const getFindID = id.slice(0, String(idInput.value).length);
+        if (idInput.value.length < 1) {
+            choseID = getUsers;
+        } else {
+            for (let i = 0; i < getUsers.length; i++) {
+                const id = getUsers[i].split(" ");
+                console.log(id.join("").toLowerCase());
+                console.log(idInput.value.toLowerCase());
+                if (id.join("").toLowerCase().includes(idInput.value.toLowerCase()) == true) {
+                    errorID.add(getUsers[i]);
+                    // alert(getUsers[i]);
+                    // const getFindID = id.slice(0, String(idInput.value).length);
 
-//                     // for (let y = 0; y < String(idInput.value).length; y++) {
-//                     //     if (getFindID.join("") === String(idInput.value)) {
-//                     //
-//                     //     }
-//                     // }
-//                 }
-//                 let result: string[] = [];
-//                 errorID.forEach((i) => {
-//                     result.push(i);
-//                 });
-//                 choseID = result;
-//                 // if (String(idInput.value).length > 0 && String(choseID).length < 1) {
-//                 //     this.isShowMessage = false;
-//                 // } else this.isShowMessage = true;
+                    // for (let y = 0; y < String(idInput.value).length; y++) {
+                    //     if (getFindID.join("") === String(idInput.value)) {
+                    //
+                    //     }
+                    // }
+                }
+                let result: string[] = [];
+                errorID.forEach((i) => {
+                    result.push(i);
+                });
+                choseID = result;
+                // if (String(idInput.value).length > 0 && String(choseID).length < 1) {
+                //     this.isShowMessage = false;
+                // } else this.isShowMessage = true;
 
-//                 // if (idInput.value == this.error) {
-//                 //     this.isShowMessage = true;
-//                 // }
-//                 // if (String(choseID).split(",").length < 2) {
-//                 //     openList.value = false;
-//                 // }
-//             }
-//         }
-//     });
-// };
+                // if (idInput.value == this.error) {
+                //     this.isShowMessage = true;
+                // }
+                // if (String(choseID).split(",").length < 2) {
+                //     openList.value = false;
+                // }
+            }
+        }
+    });
+};
 </script>
 
 <style lang="scss">
-option {
-    width: 90%;
-}
 .statictics__find-box-select-container {
     display: flex;
     flex-direction: column;
@@ -107,6 +104,7 @@ option {
     box-shadow: 0px 0px 5px gray;
     left: 0px;
     text-align: start;
+    z-index: 1;
     &_none {
         display: none;
     }

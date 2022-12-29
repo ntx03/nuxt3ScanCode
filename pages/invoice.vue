@@ -2,27 +2,27 @@
     <section class="invoice">
         <div class="invoice__title-container">
             <h2 class="invoice__title">Создать накладную</h2>
-            <button class="invoice__button"><img src="../assets/cross_black.svg" class="invoice__icon-close" /></button>
+            <button class="invoice__button"><img src="../assets/cross_black.svg" class="invoice__icon-close" @click="goBack" /></button>
         </div>
         <div class="invoice__input-container">
-            <!-- <p class="invoice__ttile">От кого:</p> -->
             <label class="invoice__input-lable" for="name">От кого:</label>
-            <input type="text" name="name" class="invoice__input" />
+            <!-- <input type="text" name="name" class="invoice__input" /> -->
+            <input-autocomplit />
         </div>
         <div class="invoice__input-container">
-            <!-- <p class="invoice__ttile">От кого:</p> -->
             <label class="invoice__input-lable" for="name">Откуда:</label>
-            <input type="text" name="name" class="invoice__input" />
+            <!-- <input type="text" name="name" class="invoice__input" /> -->
+            <input-autocomplit />
         </div>
         <div class="invoice__input-container">
-            <!-- <p class="invoice__ttile">От кого:</p> -->
             <label class="invoice__input-lable" for="name">Куда:</label>
-            <input type="text" name="name" class="invoice__input" />
+            <!-- <input type="text" name="name" class="invoice__input" /> -->
+            <input-autocomplit />
         </div>
         <div class="invoice__input-container">
-            <!-- <p class="invoice__ttile">От кого:</p> -->
             <label class="invoice__input-lable" for="name">Ответственное лицо:</label>
-            <input type="text" name="name" class="invoice__input" />
+            <!-- <input type="text" name="name" class="invoice__input" /> -->
+            <input-autocomplit />
         </div>
         <div class="invoice__input-container">
             <!-- <p class="invoice__ttile">От кого:</p> -->
@@ -31,13 +31,17 @@
             <input-autocomplit />
         </div>
         <div class="invoice__button-container">
-            <button class="invoice__button cancel">Отмена</button>
+            <button class="invoice__button cancel" @click="goBack">Отмена</button>
             <button class="invoice__button ok">ОK</button>
         </div>
     </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+function goBack() {
+    navigateTo("/");
+}
+</script>
 
 <style lang="scss" scoped>
 .invoice {

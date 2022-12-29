@@ -42,7 +42,11 @@
     width: max-content;
     margin: auto;
 }
-
+.link {
+    display: flex;
+    margin: 20px auto 0 auto;
+    width: max-content;
+}
 .scan__container {
     margin: 20px auto 0 auto;
 }
@@ -81,5 +85,6 @@ const counter = useCounter();
         </div>
 
         <button class="header__button" @click="scanShow">{{ !show ? "Сканировать" : "Остановить" }}</button>
+        <NuxtLink class="link" to="/invoice">Создать накладную</NuxtLink>
     </div>
 </template>

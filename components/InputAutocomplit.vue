@@ -1,6 +1,7 @@
 <template>
-    <div class="statictics__find-box-select-container">
-        <input type="text" class="statictics__find-box-select" v-model="idInput" @click="goWatch" @keyup.enter="closeListError" />
+    <div class="statictics__find-box-select-container" @click="closeList">
+        <label class="invoice__input-lable">{{ lable }}</label>
+        <input type="text" class="statictics__find-box-select" v-model="idInput" @click="goWatch" @touchstart.prevent="goWatch" />
         <div class="statictics__find-box-autocomplit" :class="{ 'statictics__find-box-autocomplit_none': !openList }">
             <p :key="item" v-for="item in choseID" class="statictics__find-box-autocomplit__title" @click="changeID">
                 {{ item }}
@@ -14,42 +15,33 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+    lable: String,
+});
+
 const getUsers: string[] = ["Вася Мишин", "Петя Куренков", "Анна Медведева", "Олег Прокопенко", "Михаил Созонов", "Петр Мишин", "Андрей Качур", "Никита Михайлов", "Владимир Мутин"];
 let choseID: string[] = [];
 const idInput = ref("");
 const openList = ref(false);
 
-// const goWatch = () => {
-//     openList.value = true;
-// };
+const closeList = (): void => {
+    openList.value = false;
+};
 const changeID = (e: { target: any }) => {
-    console.log(e.target.textContent);
     idInput.value = e.target.textContent;
     openList.value = false;
 };
 const goWatch = (): void => {
-    // choseID = getUsers;
     watch(idInput, () => {
         openList.value = true;
         let errorID = new Set();
-
         if (idInput.value.length < 1) {
             choseID = getUsers;
         } else {
             for (let i = 0; i < getUsers.length; i++) {
                 const id = getUsers[i].split(" ");
-                console.log(id.join("").toLowerCase());
-                console.log(idInput.value.toLowerCase());
                 if (id.join("").toLowerCase().includes(idInput.value.toLowerCase()) == true) {
                     errorID.add(getUsers[i]);
-                    // alert(getUsers[i]);
-                    // const getFindID = id.slice(0, String(idInput.value).length);
-
-                    // for (let y = 0; y < String(idInput.value).length; y++) {
-                    //     if (getFindID.join("") === String(idInput.value)) {
-                    //
-                    //     }
-                    // }
                 }
                 let result: string[] = [];
                 errorID.forEach((i) => {
@@ -79,8 +71,9 @@ const goWatch = (): void => {
     position: relative;
     width: 98%;
     margin: 0 0 0 1px;
-    // border: 1px solid red;
+    gap: 10px;
 }
+
 .statictics__find-box-select {
     border: none;
     border-radius: 2px;
@@ -100,7 +93,7 @@ const goWatch = (): void => {
     width: 100%;
     max-height: 150px;
     overflow: auto;
-    top: 28px;
+    top: 58px;
     box-shadow: 0px 0px 5px gray;
     left: 0px;
     text-align: start;
@@ -117,5 +110,8 @@ const goWatch = (): void => {
             cursor: pointer;
         }
     }
+}
+.invoice__input-lable {
+    font-size: 16px;
 }
 </style>

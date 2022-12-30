@@ -5,30 +5,19 @@
             <button class="invoice__button"><img src="../assets/cross_black.svg" class="invoice__icon-close" @click="goBack" /></button>
         </div>
         <div class="invoice__input-container">
-            <label class="invoice__input-lable" for="name">От кого:</label>
-            <!-- <input type="text" name="name" class="invoice__input" /> -->
-            <input-autocomplit />
+            <input-autocomplit :lable="'От кого:'" />
         </div>
         <div class="invoice__input-container">
-            <label class="invoice__input-lable" for="name">Откуда:</label>
-            <!-- <input type="text" name="name" class="invoice__input" /> -->
-            <input-autocomplit />
+            <input-autocomplit :lable="'Откуда:'" />
         </div>
         <div class="invoice__input-container">
-            <label class="invoice__input-lable" for="name">Куда:</label>
-            <!-- <input type="text" name="name" class="invoice__input" /> -->
-            <input-autocomplit />
+            <input-autocomplit :lable="'Куда:'" />
         </div>
         <div class="invoice__input-container">
-            <label class="invoice__input-lable" for="name">Ответственное лицо:</label>
-            <!-- <input type="text" name="name" class="invoice__input" /> -->
-            <input-autocomplit />
+            <input-autocomplit :lable="'Ответственное лицо:'" />
         </div>
         <div class="invoice__input-container">
-            <!-- <p class="invoice__ttile">От кого:</p> -->
-            <label class="invoice__input-lable">Курьер:</label>
-            <!-- <input type="text" name="name" class="invoice__input" /> -->
-            <input-autocomplit />
+            <input-autocomplit :lable="'Курьер:'" />
         </div>
         <div class="invoice__button-container">
             <button class="invoice__button cancel" @click="goBack">Отмена</button>
@@ -64,9 +53,7 @@ function goBack() {
     padding: 0;
     margin: 0;
 }
-.invoice__input-lable {
-    font-size: 16px;
-}
+
 .invoice__button {
     background-color: inherit;
     width: max-content;

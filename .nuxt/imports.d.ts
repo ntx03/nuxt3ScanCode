@@ -6,4 +6,5 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { default as useAuth } from '../composables/useAuth';
 export { default as useCounter } from '../composables/useCounter';
 export { default as useNavigation } from '../composables/useNavigation';
+export { default as useOpenList } from '../composables/useOpenList';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

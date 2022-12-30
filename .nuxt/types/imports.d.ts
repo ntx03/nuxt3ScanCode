@@ -89,6 +89,7 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useNavigation: typeof import('../../composables/useNavigation')['default']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
+  const useOpenList: typeof import('../../composables/useOpenList')['default']
   const useRequestEvent: typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']
   const useRequestHeaders: typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']
   const useRoute: typeof import('../../node_modules/nuxt/dist/app')['useRoute']
@@ -198,6 +199,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useNavigation: UnwrapRef<typeof import('../../composables/useNavigation')['default']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
+    readonly useOpenList: UnwrapRef<typeof import('../../composables/useOpenList')['default']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRoute']>

@@ -7,12 +7,12 @@ const disabledButton = ref(true);
 const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const getAuth = () => {
-    authorization(login.value, password.value)
-        .then((res)=>{
-                console.log(res)
+  //  authorization(login.value, password.value)
+    //    .then((res)=>{
+            //    console.log(res)
                 auth.value = true;
                 navigateTo("/");
-            })
+        //    })
 };
 
 watchEffect(() => {

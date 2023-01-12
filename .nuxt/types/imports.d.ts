@@ -3,6 +3,9 @@ export {}
 declare global {
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
+  const authorization: typeof import('../../utils/api')['authorization']
+  const checkError: typeof import('../../utils/api')['checkError']
+  const checkErrorJSON: typeof import('../../utils/api')['checkErrorJSON']
   const clearError: typeof import('../../node_modules/nuxt/dist/app')['clearError']
   const clearNuxtData: typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']
   const computed: typeof import('vue')['computed']
@@ -113,6 +116,9 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
+    readonly authorization: UnwrapRef<typeof import('../../utils/api')['authorization']>
+    readonly checkError: UnwrapRef<typeof import('../../utils/api')['checkError']>
+    readonly checkErrorJSON: UnwrapRef<typeof import('../../utils/api')['checkErrorJSON']>
     readonly clearError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

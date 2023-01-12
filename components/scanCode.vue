@@ -6,7 +6,7 @@ export default {
     props: {
         qrbox: {
             type: Number,
-            default: 250,
+            default: 150,
         },
         fps: {
             type: Number,

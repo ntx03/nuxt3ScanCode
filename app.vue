@@ -9,6 +9,29 @@ if (avtorize.value === true) {
 // if (video) {
 //     console.log(video);
 // }
+
+const BASE_URL = 'http://10.224.66.36:8080';
+
+// fetch(`${BASE_URL}/api/login`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//     })
+//         .then((res) => {
+//            // return res.json();
+//             try {
+//                 if (res.ok) {
+//                     return res.json();
+//                 } else return res.status;
+//             } catch (e) {
+//                 return (e)
+//             }
+//         })
+//         .then((res)=>{
+//             console.log(res);
+//         })
+       
 </script>
 
 <template>
@@ -24,7 +47,7 @@ if (avtorize.value === true) {
 .page {
     width: 100vw;
     height: 100vh;
-    background-color: beige;
+    background-color: white;
     display: flex;
     flex-direction: column;
 }

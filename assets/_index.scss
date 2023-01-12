@@ -1,11 +1,19 @@
 $blue: rgb(26, 144, 255);
 $colorHeader: rgb(0, 21, 41);
+$buttonGreen: #52BAA8;
+$grey: #D9D9D9;
 
 $font-stack: Arial;
 
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); 
+
 .page {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
     position: relative;
+
 }
 // video {
 //     max-width: 80vw;

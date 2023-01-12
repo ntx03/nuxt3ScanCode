@@ -7,4 +7,5 @@ export { default as useAuth } from '../composables/useAuth';
 export { default as useCounter } from '../composables/useCounter';
 export { default as useNavigation } from '../composables/useNavigation';
 export { default as useOpenList } from '../composables/useOpenList';
+export { checkErrorJSON, checkError, authorization } from '../utils/api';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

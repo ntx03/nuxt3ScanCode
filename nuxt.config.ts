@@ -1,4 +1,6 @@
+
 export default defineNuxtConfig({
+
   css: [
     // CSS file in the project
     '@/assets/normalize.css',
@@ -14,6 +16,7 @@ export default defineNuxtConfig({
           }
         }
       }
+      
     }
    
   })

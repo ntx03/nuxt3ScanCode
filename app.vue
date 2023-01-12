@@ -39,7 +39,6 @@ const BASE_URL = 'http://10.224.66.36:8080';
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
-        <Navigate />
     </div>
 </template>
 

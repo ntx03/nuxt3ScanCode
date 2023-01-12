@@ -24,12 +24,12 @@
   display: flex;
   background-color: $buttonGreen;
   margin: 20px auto 0 auto;
-  width: 250px;
-  height: 40px;
+  width: 200px;
+  height: max-content;
   color: white;
   font-size: 12px;
   line-height: 18px;
-  padding: 10px 0 0 8px;
+  padding: 10px 10px 10px 50px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -57,45 +57,7 @@
   margin: 20px auto 0 auto;
 }
 
-.navigation__container {
-  display: flex;
-  gap: 10px;
-  margin: 30px auto 0 auto;
-  width: 90%;
-  justify-content: space-between;
-}
-.navigation__item{
-    text-decoration: none;
-    transition: 0.3s;
-    &:hover {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-}
-.navigation__icon {
-  width: 30px;
-  height: 30px;
-  margin: auto;
-}
-.icon__container{
-display: flex;
-flex-direction: column;
-justify-content: center;
-
-}
-.icon__text{
-    padding: 0;
-    margin: 6px 0 0 0;
-    text-decoration:none;
-    text-align: center;
-    text-decoration: none;
-    color: $grey;
-&_green {
-    color: $buttonGreen;
-}
-}
 @media (min-width: 501px) {
-
     .page {
         width: 500px;
         margin: auto;
@@ -114,7 +76,7 @@ const scanText = ref("Нет данных");
 const show = ref(false);
 
 const scanShow = (): void => {
-  show.value = !show.value;
+  navigateTo("/search");
 };
 
 const onScan = (decodedText: string, decodedResult: object): void => {
@@ -129,14 +91,10 @@ const counter = useCounter();
 <template>
   <div class="page">
     <div>
-      <ScanCode :qrbox="200" :fps="10" @result="onScan" class="width" />
+      <ScanCode :qrbox="250" :fps="10" @result="onScan" class="width" />
     </div>
 
-    <button class="button" @click="scanShow">Ввести инвентариный/серийный номер</button>
-    <div class="navigation__container">
-      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/qr_code_scanner.svg" class="navigation__icon" /><p class="icon__text icon__text_green">Сканировать</p></div></NuxtLink>
-      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/manage_search.svg" class="navigation__icon" /><p class="icon__text">История</p></div> </NuxtLink>
-      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/account_circle.svg" class="navigation__icon" /><p class="icon__text">Профиль</p></div></NuxtLink>
-    </div>
+    <button class="button" @click="scanShow">Ввести вручную</button>
+<Navigate/>
   </div>
 </template>

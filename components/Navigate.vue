@@ -1,51 +1,51 @@
 <template>
-    <div class="navigation" :class="{ navigation__open: navigate }" @click="closeNavigate">
-        <img class="navigation__logo" src="../assets/logo_2.svg" />
-        <NuxtLink to="/login" class="navigation__link">Выйти</NuxtLink>
+     <div class="navigation__container">
+      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/qr_code_scanner.svg" class="navigation__icon" /><p class="icon__text icon__text_green">Сканировать</p></div></NuxtLink>
+      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/manage_search.svg" class="navigation__icon" /><p class="icon__text">История</p></div> </NuxtLink>
+      <NuxtLink to="/" class="navigation__item"><div class="icon__container"><img src="../assets/account_circle.svg" class="navigation__icon" /><p class="icon__text">Профиль</p></div></NuxtLink>
     </div>
 </template>
 
 <script setup lang="ts">
-const navigate = useNavigation();
 
-function closeNavigate() {
-    navigate.value = false;
-}
 </script>
 
 <style lang="scss">
-.navigation {
-    display: flex;
-    flex-direction: column;
-    align-self: start;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background-color: $colorHeader;
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
+.navigation__container {
+  display: flex;
+  gap: 10px;
+  margin: 30px auto 30px auto;
+  width: 90%;
+  justify-content: space-between;
 }
-
-.navigation__open {
-    opacity: 1;
-    visibility: visible;
-}
-.navigation__title {
-    color: azure;
-    margin: 20px auto 0 auto;
-}
-
-.navigation__logo {
-    width: 40px;
-    height: 50px;
-    margin: 25px 3% 20px 5%;
-}
-.navigation__link {
-    color: white;
-    margin: 0 10% 0 auto;
+.navigation__item{
     text-decoration: none;
-    font-size: 18px;
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+.navigation__icon {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+.icon__container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+
+}
+.icon__text{
+    padding: 0;
+    margin: 6px 0 0 0;
+    text-decoration:none;
+    text-align: center;
+    text-decoration: none;
+    color: $grey;
+&_green {
+    color: $buttonGreen;
+}
 }
 </style>

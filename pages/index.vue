@@ -23,20 +23,23 @@
 .button {
   display: flex;
   background-color: $buttonGreen;
-  margin: 20px auto 0 auto;
-  width: 200px;
-  height: max-content;
+  margin: 25px auto 0 auto;
+  width: 160px;
   color: white;
   font-size: 12px;
   line-height: 18px;
-  padding: 10px 10px 10px 50px;
+  padding: 6px 10px 10px 33px;
   border-radius: 10px;
   border: none;
   outline: none;
   transition: 0.3s;
   text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  &:hover {
+    cursor: pointer;
   }
-
+}
 
 .header__number {
   display: flex;
@@ -58,10 +61,10 @@
 }
 
 @media (min-width: 501px) {
-    .page {
-        width: 500px;
-        margin: auto;
-    }
+  .page {
+    width: 500px;
+    margin: auto;
+  }
 }
 </style>
 
@@ -75,7 +78,7 @@ const scanText = ref("Нет данных");
 
 const show = ref(false);
 
-const scanShow = (): void => {
+const typeData = (): void => {
   navigateTo("/search");
 };
 
@@ -94,7 +97,7 @@ const counter = useCounter();
       <ScanCode :qrbox="250" :fps="10" @result="onScan" class="width" />
     </div>
 
-    <button class="button" @click="scanShow">Ввести вручную</button>
-<Navigate/>
+    <NuxtLink class="button" to="/search">Ввести вручную</NuxtLink>
+    <Navigate />
   </div>
 </template>

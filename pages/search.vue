@@ -1,38 +1,44 @@
 <script setup lang="ts">
 const invNumber = ref("");
 const cerNumber = ref("");
+const goInfirmation = () => {
+  navigateTo("/information");
+};
 </script>
 <template>
-  <div class="header">
-    <div class="back__container">
-      <img class="back__icon" src="../assets/left_row.svg" />
-      <p class="back__text">Назад</p>
-    </div>
-    <NuxtLink class="header__exit-container">
-      <p class="exit__text">Тамилла С.М.</p>
-      <img class="exit__icon" src="../assets/exit.svg" />
-    </NuxtLink>
-  </div>
-  <h1 class="main__title">Укажите инвентарный или серийный номер оборудования:</h1>
+  <HeaderGoBack :link="'/'" />
+  <h1 class="main__title">
+    Укажите инвентарный или серийный номер оборудования:
+  </h1>
   <div class="input__box">
     <p class="input__title">Инвентарный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" v-model="invNumber" placeholder="Введите инвентарный номер" />
+      <input
+        type="text"
+        class="login__input"
+        v-model="invNumber"
+        placeholder="Введите инвентарный номер"
+      />
     </div>
   </div>
   <div class="input__box">
     <p class="input__title">Серийный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" v-model="cerNumber" placeholder="Введите серийный номер" />
+      <input
+        type="text"
+        class="login__input"
+        v-model="cerNumber"
+        placeholder="Введите серийный номер"
+      />
     </div>
   </div>
   <div class="button__box">
     <button class="button button__clear">Очистить</button>
-    <button class="button button__search">Поиск</button>
+    <button class="button button__search" @click="goInfirmation">Поиск</button>
   </div>
-  <Navigate/>
+  <Navigate />
 </template>
 <style scoped lang="scss">
 .header {
@@ -53,8 +59,11 @@ const cerNumber = ref("");
 .back__text {
   font-size: 14px;
   font-weight: 400;
-  &:focus {
-    opacity: 0.8;
+  text-decoration: none;
+  color: black;
+  padding: 4px 0 0 0;
+  &:hover {
+    cursor: pointer;
   }
 }
 .exit__text {
@@ -67,6 +76,7 @@ const cerNumber = ref("");
 .exit__icon {
   width: 20px;
   height: 20px;
+  padding: 3px 0 0 0;
   margin: auto;
 }
 .header__exit-container {
@@ -116,40 +126,40 @@ const cerNumber = ref("");
   outline: none;
   font-size: 12px;
 }
+
 .login__icon-input {
   width: 20px;
   height: 18px;
   padding: 0 0 2px 0;
   margin: auto 0 auto 10px;
 }
-.button__box{
-    display: flex;
-    gap: 20px;
-    margin: 20px auto 20px auto;
-    width: max-content;
+.button__box {
+  display: flex;
+  gap: 20px;
+  margin: 20px auto 20px auto;
+  width: max-content;
 }
 .button {
-    border: none;
-    color: white;
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-    width: 120px;
-    border-radius: 10px;
-    height: 32px;
-    transition: 0.3s;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.06);
-    }
+  border: none;
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  width: 120px;
+  border-radius: 10px;
+  height: 32px;
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+  }
 }
 .button__clear {
-    background-color: rgba(0, 0, 0, 0.79);
-    padding: 0 0 2px 0px;
+  background-color: rgba(0, 0, 0, 0.79);
+  padding: 0 0 2px 0px;
 }
 .button__search {
-    background-color: $buttonGreen;
-    padding: 0 0 2px 0px;
-
+  background-color: $buttonGreen;
+  padding: 0 0 2px 0px;
 }
 </style>

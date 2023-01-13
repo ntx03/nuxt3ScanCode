@@ -37,9 +37,9 @@
 }
 .header__exit-container {
   display: flex;
-  margin: auto 10px auto auto;
+  margin: auto 20px auto auto;
   gap: 10px;
-  padding: 0;
+  padding: 4px 0 0 0;
   width: max-content;
   height: max-content;
 }
@@ -49,10 +49,12 @@
   padding: 0;
   width: max-content;
   font-weight: 400;
+  color: gray;
 }
 .exit__icon {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  padding: 4px 0 0 0;
   margin: auto;
 }
 </style>
@@ -72,7 +74,9 @@ function openNavigate() {
       <p class="header__text">Mob inventory</p>
       <div class="header__exit-container">
         <p class="exit__text">Тамилла С.М.</p>
-        <img class="exit__icon" src="../assets/exit.svg" />
+        <NuxtLink to="/login">
+          <img class="exit__icon" src="../assets/exit.svg"
+        /></NuxtLink>
       </div>
       <!-- <img class="header__burger" src="../assets/burger-menu.svg" @click="openNavigate" /> -->
     </div>

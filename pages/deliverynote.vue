@@ -1,33 +1,26 @@
 <template>
   <HeaderGoBack :link="'/information'" />
-  <h1 class="main__title">
-    Накладная <span class="main__title_black">0000111:</span>
-  </h1>
-  <h3 class="title">Сведения об отправителе:</h3>
-  <p class="from">
-    От кого: <span class="from_black">Качур Андрей Леонидович</span>
-  </p>
-  <p class="from">
-    Откуда: <span class="from_black">Отдел информатизации</span>
-  </p>
-  <h3 class="title">Сведения об оборудовании:</h3>
-  <p class="from">Инв.номер: <span class="from_black">12546663212121</span></p>
-  <p class="from">Наиманование: <span class="from_black">Коммутатор</span></p>
-  <p class="from">Количество: <span class="from_black">1</span></p>
-  <p class="from">Производитель: <span class="from_black">Cisco</span></p>
-  <p class="from">Модель: <span class="from_black">SN2154525</span></p>
+  <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1>
+  <div class="description">
+    <h3 class="title">Сведения об отправителе:</h3>
+    <p class="from">От кого: <span class="from_black">Качур Андрей Леонидович</span></p>
+    <p class="from">Откуда: <span class="from_black">Отдел информатизации</span></p>
+    <h3 class="title">Сведения об оборудовании:</h3>
+    <p class="from">Инв.номер: <span class="from_black">12546663212121</span></p>
+    <p class="from">Наиманование: <span class="from_black">Коммутатор</span></p>
+    <p class="from">Количество: <span class="from_black">1</span></p>
+    <p class="from">Производитель: <span class="from_black">Cisco</span></p>
+    <p class="from">Модель: <span class="from_black">SN2154525</span></p>
+  </div>
   <div class="button__box">
     <button class="button button_black">Отмена</button>
-    <NuxtLink to="/recipient"
-      ><button class="button">Продолжить</button></NuxtLink
-    >
+    <NuxtLink to="/recipient"><button class="button">Продолжить</button></NuxtLink>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main__title {
   margin: 20px 20px 0px 20px;
   padding: 0;
@@ -40,9 +33,15 @@
     color: black;
   }
 }
+.description {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
+}
 .title {
   font-size: 12px;
-  margin: 15px auto 5px auto;
+  margin: 25px auto 5px auto;
   font-weight: 400;
   line-height: 16px;
   color: $buttonGreen;

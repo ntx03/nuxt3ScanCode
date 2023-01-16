@@ -70,9 +70,9 @@ const goWatch = (): void => {
 
 <style scoped lang="scss">
 .input__box {
-  width: 80%;
+  width: 90%;
   height: 30px;
-  margin: 0 auto 0 10%;
+  margin: 0 auto 0 auto;
   display: flex;
   outline: 1px solid rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -86,7 +86,7 @@ const goWatch = (): void => {
   position: relative;
   width: 98%;
   margin: 0 0 0 0;
-  gap: 10px;
+  gap: 2px;
 }
 
 .statistics__find-box-select {
@@ -104,35 +104,35 @@ const goWatch = (): void => {
 }
 .statistics__find-box-autocomplete {
   position: absolute;
-  background-color: rgba(82, 186, 168, 0.1);
-  width: 78%;
-  max-height: 150px;
+  background-color: rgb(211, 250, 243);
+  width: 85%;
+  max-height: 100px;
   overflow: auto;
-  top: 65px;
+  top: 58px;
   box-shadow: 0px 0px 5px gray;
-  left: 11%;
-  //text-align: start;
+  left: 7%;
+  font-size: 12px;
   z-index: 1;
   &_none {
     display: none;
   }
   &__title {
     padding: 0;
-    margin: 2px 0 2px 5px;
+    margin: 0px 0 2px 5px;
     padding: 2px 0 2px 5px;
-    &:hover {
-      //  background-color: rgba(82, 186, 168, 0.2);
-      //cursor: pointer;
-    }
   }
 }
-.statistics__find-box-autocomplete__title :hover {
-  cursor: pointer;
-  background-color: rgba(82, 186, 168, 0.2);
+.statistics__find-box-autocomplete__title {
+  width: 97%;
+  height: max-content;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(82, 186, 168, 0.2);
+  }
 }
 .invoice__input-label {
   font-size: 12px;
   color: $buttonGreen;
-  margin: 0 auto 0 10%;
+  margin: 0 auto 0 5%;
 }
 </style>

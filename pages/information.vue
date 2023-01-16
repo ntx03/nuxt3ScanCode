@@ -1,33 +1,34 @@
 <template>
   <HeaderGoBack :link="'/search'" />
-  <h1 class="information__header">Информация по оборудованию:</h1>
-  <div class="information__box">
-    <p class="information__title">Инвентарный номер:</p>
-    <p class="information__content">{{ inv }}</p>
+  <div class="information__container">
+    <h1 class="information__header">Информация по оборудованию:</h1>
+
+    <div class="information__box">
+      <p class="information__title">Инвентарный номер:</p>
+      <p class="information__content">{{ inv }}</p>
+    </div>
+    <div class="information__box">
+      <p class="information__title">Серийный номер:</p>
+      <p class="information__content">123</p>
+    </div>
+    <div class="information__box">
+      <p class="information__title">Наименование:</p>
+      <p class="information__content">123</p>
+    </div>
+    <div class="information__box">
+      <p class="information__title">Текущее местоположение:</p>
+      <p class="information__content">123</p>
+    </div>
+    <div class="information__box">
+      <p class="information__title">МОЛ:</p>
+      <p class="information__content">123</p>
+    </div>
+    <div class="information__box">
+      <p class="information__title">Состояние:</p>
+      <p class="information__content">123</p>
+    </div>
   </div>
-  <div class="information__box">
-    <p class="information__title">Серийный номер:</p>
-    <p class="information__content">123</p>
-  </div>
-  <div class="information__box">
-    <p class="information__title">Наименование:</p>
-    <p class="information__content">123</p>
-  </div>
-  <div class="information__box">
-    <p class="information__title">Текущее местоположение:</p>
-    <p class="information__content">123</p>
-  </div>
-  <div class="information__box">
-    <p class="information__title">МОЛ:</p>
-    <p class="information__content">123</p>
-  </div>
-  <div class="information__box">
-    <p class="information__title">Состояние:</p>
-    <p class="information__content">123</p>
-  </div>
-  <button class="information__button" @click="createDeliveryNote">
-    Добавить в накладную
-  </button>
+  <button class="information__button" @click="createDeliveryNote">Добавить в накладную</button>
   <Navigate />
 </template>
 
@@ -43,7 +44,12 @@ const createDeliveryNote = () => {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.information__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
+}
 .information__box {
   display: flex;
   flex-direction: column;
@@ -54,7 +60,7 @@ const createDeliveryNote = () => {
 }
 .information__header {
   margin: 30px 20px 20px 20px;
-  padding: 0;
+  padding: 0 0 0 20px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -63,8 +69,7 @@ const createDeliveryNote = () => {
 }
 .information__title {
   padding: 0;
-  margin: 0 0 0 0px;
-
+  margin: 0;
   color: $buttonGreen;
 }
 .information__content {
@@ -72,6 +77,8 @@ const createDeliveryNote = () => {
   margin: 0;
 }
 .information__button {
+  display: flex;
+  padding: 10px 0 10px 17px;
   border: none;
   color: white;
   font-size: 12px;
@@ -79,7 +86,7 @@ const createDeliveryNote = () => {
   font-weight: 400;
   width: 170px;
   border-radius: 10px;
-  height: 32px;
+  height: max-content;
   transition: 0.3s;
   background-color: $buttonGreen;
   margin: 20px auto 20px auto;
@@ -87,4 +94,9 @@ const createDeliveryNote = () => {
     cursor: pointer;
   }
 }
+// @media (min-width: 500px) {
+//   .information__container {
+//     margin: 0 auto 0 auto;
+//   }
+// }
 </style>

@@ -5,27 +5,28 @@
 
     <div class="information__box">
       <p class="information__title">Инвентарный номер:</p>
-      <p class="information__content">{{ inv }}</p>
+      <p class="information__content">{{ getDate(equipment.inventoryNumber) }}</p>
     </div>
     <div class="information__box">
       <p class="information__title">Серийный номер:</p>
-      <p class="information__content">123</p>
+      <p class="information__content">{{ getDate(equipment.serialNumber) }}</p>
     </div>
     <div class="information__box">
       <p class="information__title">Наименование:</p>
-      <p class="information__content">123</p>
+      <p class="information__content">{{ getDate(equipment.model.name) }}</p>
     </div>
     <div class="information__box">
       <p class="information__title">Текущее местоположение:</p>
-      <p class="information__content">123</p>
+      <p class="information__content">{{ `${getDate(equipment.location.address)}, ${equipment.location.name}` }}</p>
     </div>
+
     <div class="information__box">
       <p class="information__title">МОЛ:</p>
-      <p class="information__content">123</p>
+      <p class="information__content">{{ getDate(equipment.accountablePerson.name) }}</p>
     </div>
     <div class="information__box">
       <p class="information__title">Состояние:</p>
-      <p class="information__content">123</p>
+      <p class="information__content">{{ getDate(equipment.state.name) }}</p>
     </div>
   </div>
   <button class="information__button" @click="createDeliveryNote">Добавить в накладную</button>
@@ -39,6 +40,15 @@ defineProps<{
     default: 123;
   };
 }>();
+
+const equipment = useEquipment();
+
+const getDate = (date: string) => {
+  if (date.length < 1) {
+    return "Нет";
+  } else return date;
+};
+
 const createDeliveryNote = () => {
   navigateTo("/deliverynote");
 };

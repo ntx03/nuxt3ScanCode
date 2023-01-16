@@ -22,8 +22,7 @@ export const checkError = (res:any) => {
 };
 const baseUrl: string =  'http://10.224.66.36:8081/';
 /**
- * запрос  на добавление комментария к ошибке
-
+ * авторицазия на сервере инвентори
  */
 export const authorization = async (login: string, password: string) => {
     const res = await fetch(baseUrl + "api/login", {
@@ -34,4 +33,17 @@ export const authorization = async (login: string, password: string) => {
         },
     });
     return checkErrorJSON(res);
+};
+/**
+ * 
+ */
+export const changeInvNumber = async (number: string) => {
+    const res = await fetch(baseUrl + `api/equipment/get?inventoryNumber=${number}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+           // "Authorization": `Basic ${btoa(`${login}:${password}`)}`,
+        },
+    });
+    return checkError(res);
 };

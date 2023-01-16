@@ -1,37 +1,36 @@
 <script setup lang="ts">
+//import { changeInvNumber } from "../utils/api";
 const invNumber = ref("");
 const cerNumber = ref("");
+const equipment = useEquipment();
 const goInfirmation = () => {
-  navigateTo("/information");
+  changeInvNumber(invNumber.value)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      equipment.value = res;
+      console.log(`Ответ от сервера: ${res}`);
+      console.log(res);
+      navigateTo("/information");
+    });
 };
 </script>
 <template>
   <HeaderGoBack :link="'/'" />
-  <h1 class="main__title">
-    Укажите инвентарный или серийный номер оборудования:
-  </h1>
+  <h1 class="main__title">Укажите инвентарный или серийный номер оборудования:</h1>
   <div class="input__box">
     <p class="input__title">Инвентарный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input
-        type="text"
-        class="login__input"
-        v-model="invNumber"
-        placeholder="Введите инвентарный номер"
-      />
+      <input type="text" class="login__input" v-model="invNumber" placeholder="Введите инвентарный номер" />
     </div>
   </div>
   <div class="input__box">
     <p class="input__title">Серийный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input
-        type="text"
-        class="login__input"
-        v-model="cerNumber"
-        placeholder="Введите серийный номер"
-      />
+      <input type="text" class="login__input" v-model="cerNumber" placeholder="Введите серийный номер" disabled />
     </div>
   </div>
   <div class="button__box">

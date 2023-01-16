@@ -4,6 +4,7 @@ declare global {
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
   const authorization: typeof import('../../utils/api')['authorization']
+  const changeInvNumber: typeof import('../../utils/api')['changeInvNumber']
   const checkError: typeof import('../../utils/api')['checkError']
   const checkErrorJSON: typeof import('../../utils/api')['checkErrorJSON']
   const clearError: typeof import('../../node_modules/nuxt/dist/app')['clearError']
@@ -84,6 +85,7 @@ declare global {
   const useCounter: typeof import('../../composables/useCounter')['default']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useEquipment: typeof import('../../composables/useEquipment')['default']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app')['useFetch']
   const useHead: typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']
@@ -117,6 +119,7 @@ declare module 'vue' {
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
     readonly authorization: UnwrapRef<typeof import('../../utils/api')['authorization']>
+    readonly changeInvNumber: UnwrapRef<typeof import('../../utils/api')['changeInvNumber']>
     readonly checkError: UnwrapRef<typeof import('../../utils/api')['checkError']>
     readonly checkErrorJSON: UnwrapRef<typeof import('../../utils/api')['checkErrorJSON']>
     readonly clearError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearError']>
@@ -197,6 +200,7 @@ declare module 'vue' {
     readonly useCounter: UnwrapRef<typeof import('../../composables/useCounter')['default']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useEquipment: UnwrapRef<typeof import('../../composables/useEquipment')['default']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
     readonly useHead: UnwrapRef<typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']>

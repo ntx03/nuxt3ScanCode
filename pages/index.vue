@@ -69,6 +69,8 @@
 </style>
 
 <script setup lang="ts">
+import { changeInvNumber } from "../utils/api";
+const equipment = useEquipment();
 definePageMeta({
   layout: "header",
   middleware: ["auth"],
@@ -86,9 +88,19 @@ const onScan = (decodedText: string, decodedResult: object): void => {
   console.log(decodedText);
   scanText.value = decodedText;
   console.log(decodedResult);
+  changeInvNumber(decodedText)
+    .then((res) => {
+      navigateTo("/information");
+      return res.json();
+    })
+    .then((res) => {
+      equipment.value = res;
+      console.log(`Ответ от сервера: ${res}`);
+      console.log(res);
+    });
+  //
 };
 
-const counter = useCounter();
 //const counter = useState<number>("counter", () => Math.round(Math.random() * 1000));
 </script>
 <template>

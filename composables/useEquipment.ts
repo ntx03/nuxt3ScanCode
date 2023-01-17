@@ -1,3 +1,3 @@
 export default function () {
-    return useState<object>('equipment', () => {})
+    return useState<object>('equipment', ():any => {})
   }

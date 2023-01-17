@@ -82,9 +82,9 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useAuth: typeof import('../../composables/useAuth')['default']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
-  const useCounter: typeof import('../../composables/useCounter')['default']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDecoderText: typeof import('../../composables/useDecoderText')['default']
   const useEquipment: typeof import('../../composables/useEquipment')['default']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app')['useFetch']
@@ -95,6 +95,7 @@ declare global {
   const useNavigation: typeof import('../../composables/useNavigation')['default']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
   const useOpenList: typeof import('../../composables/useOpenList')['default']
+  const usePath: typeof import('../../composables/usePath')['default']
   const useRequestEvent: typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']
   const useRequestHeaders: typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']
   const useRoute: typeof import('../../node_modules/nuxt/dist/app')['useRoute']
@@ -197,9 +198,9 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuth: UnwrapRef<typeof import('../../composables/useAuth')['default']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
-    readonly useCounter: UnwrapRef<typeof import('../../composables/useCounter')['default']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDecoderText: UnwrapRef<typeof import('../../composables/useDecoderText')['default']>
     readonly useEquipment: UnwrapRef<typeof import('../../composables/useEquipment')['default']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
@@ -210,6 +211,7 @@ declare module 'vue' {
     readonly useNavigation: UnwrapRef<typeof import('../../composables/useNavigation')['default']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useOpenList: UnwrapRef<typeof import('../../composables/useOpenList')['default']>
+    readonly usePath: UnwrapRef<typeof import('../../composables/usePath')['default']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRoute']>

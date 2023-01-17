@@ -1,19 +1,128 @@
 <script setup lang="ts">
-//import { changeInvNumber } from "../utils/api";
+const route = useRoute();
+const nowPath = usePath();
+
+/**
+ * поле инв. номера
+ */
 const invNumber = ref("");
+/**
+ * поле серийного номера
+ */
 const cerNumber = ref("");
-const equipment = useEquipment();
+/**
+ * стейт с информацией о ТМЦ
+ */
+const equipmentState = useEquipment();
+/**
+ * текст который прилетает со сканера
+ */
+const text = useDecoderText();
+/**
+ * Ищем ТМЦ по инвентарному или серийному номеру
+ */
 const goInfirmation = () => {
-  changeInvNumber(invNumber.value)
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      equipment.value = res;
-      console.log(`Ответ от сервера: ${res}`);
-      console.log(res);
-      navigateTo("/information");
-    });
+  if (invNumber.value.length > 3) {
+    changeInvNumber(invNumber.value)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res === false) {
+          if (cerNumber.value.length < 4) {
+            text.value = String(invNumber.value);
+            nowPath.value = route.fullPath;
+            navigateTo("/nosearch");
+            return;
+          }
+          changeInvNumber(cerNumber.value)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              if (res === false) {
+                text.value = String(cerNumber.value);
+                nowPath.value = route.fullPath;
+                navigateTo("/nosearch");
+              } else {
+                equipmentState.value = res;
+                navigateTo("/information");
+              }
+            })
+            .catch((err) => {
+              alert(err);
+            });
+          return;
+        } else {
+          equipmentState.value = res;
+          navigateTo("/information");
+        }
+      })
+      .catch((err) => {
+        console.log(`вторая ступень`);
+        alert(err);
+      });
+    return;
+  } else if (cerNumber.value.length > 3) {
+    changeInvNumber(cerNumber.value)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res === false) {
+          text.value = String(cerNumber.value);
+          nowPath.value = route.fullPath;
+          navigateTo("/nosearch");
+        } else {
+          equipmentState.value = res;
+          navigateTo("/information");
+        }
+      })
+      .catch((err) => {
+        console.log(`третья ступень`);
+        alert(err);
+      });
+    return;
+  }
+};
+/**
+ * Очистка полей ввода
+ */
+const clear = () => {
+  invNumber.value = "";
+  cerNumber.value = "";
+};
+/**
+ * отключение кнопки очистки,  если пусто в полях ввода
+ */
+const disabledButtonClear = () => {
+  if (String(invNumber.value).length === 0 && String(cerNumber.value).length === 0) {
+    return true;
+  } else return false;
+};
+/**
+ * регулярки проверки на буквы и спецвимволы
+ */
+const lessers = /[a-zA-Z]/i;
+const symbol = /[!@#$%^&*()_+\[=\]{};':"\\|,.<>\/?]+/;
+/**
+ * проверяем на наличие букв и спецсимволов введенные данные пользователя
+ */
+const checkLetter = () => {
+  if (invNumber.value.match(lessers) || invNumber.value.match(symbol) || cerNumber.value.match(symbol)) {
+    return false;
+  } else return true;
+};
+/**
+ * отключаем кнопку поиска
+ */
+const disabledButtonSearch = () => {
+  if (checkLetter() === false) {
+    return true;
+  }
+  if (String(invNumber.value).length > 3 || String(cerNumber.value).length > 3) {
+    return false;
+  } else return true;
 };
 </script>
 <template>
@@ -23,19 +132,19 @@ const goInfirmation = () => {
     <p class="input__title">Инвентарный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" v-model="invNumber" placeholder="Введите инвентарный номер" />
+      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="invNumber" placeholder="Введите инвентарный номер" maxlength="12" />
     </div>
   </div>
   <div class="input__box">
     <p class="input__title">Серийный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" v-model="cerNumber" placeholder="Введите серийный номер" disabled />
+      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="cerNumber" placeholder="Введите серийный номер" maxlength="25" />
     </div>
   </div>
   <div class="button__box">
-    <button class="button button__clear">Очистить</button>
-    <button class="button button__search" @click="goInfirmation">Поиск</button>
+    <button class="button button__clear" :class="{ button__clear_disabled: disabledButtonClear() }" @click="clear" :disabled="disabledButtonClear()">Очистить</button>
+    <button class="button button__search" :class="{ button__search_disabled: disabledButtonSearch() }" @click="goInfirmation" :disabled="disabledButtonSearch()">Поиск</button>
   </div>
   <Navigate />
 </template>
@@ -124,6 +233,9 @@ const goInfirmation = () => {
   border-radius: 10px;
   outline: none;
   font-size: 12px;
+  &_red {
+    color: red;
+  }
 }
 
 .login__icon-input {
@@ -156,9 +268,23 @@ const goInfirmation = () => {
 .button__clear {
   background-color: rgba(0, 0, 0, 0.79);
   padding: 0 0 2px 0px;
+  &_disabled {
+    opacity: 0.5;
+    &:hover {
+      cursor: auto;
+      transform: scale(1);
+    }
+  }
 }
 .button__search {
   background-color: $buttonGreen;
   padding: 0 0 2px 0px;
+  &_disabled {
+    opacity: 0.5;
+    &:hover {
+      cursor: auto;
+      transform: scale(1);
+    }
+  }
 }
 </style>

@@ -1,3 +1,69 @@
+<script setup lang="ts">
+import { changeInvNumber } from "../utils/api";
+definePageMeta({
+  layout: "header",
+  middleware: ["auth"],
+});
+const scanText = useDecoderText();
+/**
+ * Записываем сюда данные об распознвнном оборудовании
+ */
+const equipment = useEquipment();
+
+/**
+ * Данные о текущем роуте
+ */
+const route = useRoute();
+/**
+ * Стейт с текущим роутом
+ */
+const nowPath = usePath();
+
+/**
+ *
+ * @param decodedText - распознанные данные с отсканированного qrCode
+ * @param decodedResult - объект с распознанными данными
+ */
+const onScan = (decodedText: string, decodedResult: object): void => {
+  const checkUrl = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/i;
+  if (decodedText.match(checkUrl)) {
+    debugger;
+    alert(`Недопустимое выражение ${decodedText}`);
+    return;
+  } else if (decodedText.length < 4 || decodedText.length > 25) {
+    alert(`Недопустимое выражение ${decodedText}. Значение должно быть больше 3 или меньше 26 символов.`);
+    return;
+  } else {
+    changeInvNumber(decodedText)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res === false) {
+          console.log(res);
+          scanText.value = decodedText;
+          nowPath.value = route.fullPath;
+          navigateTo("/nosearch");
+        } else {
+          res.decoderText = decodedText;
+          equipment.value = res;
+          navigateTo("/information");
+        }
+      });
+  }
+};
+</script>
+
+<template>
+  <div class="page">
+    <div>
+      <ScanCode :qrbox="250" :fps="10" @result="onScan" class="width" />
+    </div>
+    <NuxtLink class="button" to="/search">Ввести вручную</NuxtLink>
+    <Navigate />
+  </div>
+</template>
+
 <style scoped lang="scss">
 .header {
   display: flex;
@@ -7,7 +73,6 @@
   text-align: center;
   // height: 100px;
 }
-
 .header__text {
   font-size: 30px;
   font-weight: 500;
@@ -67,49 +132,3 @@
   }
 }
 </style>
-
-<script setup lang="ts">
-import { changeInvNumber } from "../utils/api";
-const equipment = useEquipment();
-definePageMeta({
-  layout: "header",
-  middleware: ["auth"],
-});
-
-const scanText = ref("Нет данных");
-
-const show = ref(false);
-
-const typeData = (): void => {
-  navigateTo("/search");
-};
-
-const onScan = (decodedText: string, decodedResult: object): void => {
-  console.log(decodedText);
-  scanText.value = decodedText;
-  console.log(decodedResult);
-  changeInvNumber(decodedText)
-    .then((res) => {
-      navigateTo("/information");
-      return res.json();
-    })
-    .then((res) => {
-      equipment.value = res;
-      console.log(`Ответ от сервера: ${res}`);
-      console.log(res);
-    });
-  //
-};
-
-//const counter = useState<number>("counter", () => Math.round(Math.random() * 1000));
-</script>
-<template>
-  <div class="page">
-    <div>
-      <ScanCode :qrbox="250" :fps="10" @result="onScan" class="width" />
-    </div>
-
-    <NuxtLink class="button" to="/search">Ввести вручную</NuxtLink>
-    <Navigate />
-  </div>
-</template>

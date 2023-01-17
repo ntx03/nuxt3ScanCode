@@ -35,14 +35,13 @@ export const authorization = async (login: string, password: string) => {
     return checkErrorJSON(res);
 };
 /**
- * 
+ * Проверяем на наличие инвентарного номера в базе данных
  */
 export const changeInvNumber = async (number: string) => {
     const res = await fetch(baseUrl + `api/equipment/get?inventoryNumber=${number}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-           // "Authorization": `Basic ${btoa(`${login}:${password}`)}`,
         },
     });
     return checkError(res);

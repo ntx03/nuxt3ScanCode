@@ -23,7 +23,7 @@
 
 <script setup lang="ts"></script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .navigation__container {
   display: flex;
   gap: 10px;
@@ -44,11 +44,13 @@
   height: 30px;
   margin: auto;
 }
+
 .icon__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .icon__text {
   padding: 0;
   margin: 6px 0 0 0;
@@ -60,9 +62,10 @@
     color: $buttonGreen;
   }
 }
+
 @media (min-width: 500px) {
   .navigation__container {
-    width: 95%;
+    width: 400px;
   }
 }
 </style>

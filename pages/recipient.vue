@@ -1,6 +1,6 @@
 <template>
   <HeaderGoBack :link="'/deliverynote'" />
-  <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1>
+  <!-- <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1> -->
   <h3 class="title">Сведения об получателе:</h3>
   <div class="container">
     <div class="select__box">

@@ -34,13 +34,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  inv: {
-    type: string;
-    default: 123;
-  };
-}>();
-
 const equipment = useEquipment();
 
 const getDate = (date: string) => {
@@ -85,6 +78,7 @@ const createDeliveryNote = () => {
 .information__content {
   padding: 0;
   margin: 0;
+  max-width: 300px;
 }
 .information__button {
   display: flex;

@@ -21,6 +21,7 @@ export const checkError = (res:any) => {
     return Promise.reject(`Ошибка: ${res.status}`);
 };
 const baseUrl: string =  'http://10.224.66.36:8081/';
+const invUrl: string = 'http://10.224.66.36:8080/';
 /**
  * авторицазия на сервере инвентори
  */
@@ -32,7 +33,7 @@ export const authorization = async (login: string, password: string) => {
             "Authorization": `Basic ${btoa(`${login}:${password}`)}`,
         },
     });
-    return checkErrorJSON(res);
+    return checkError(res);
 };
 /**
  * Проверяем на наличие инвентарного номера в базе данных
@@ -46,3 +47,13 @@ export const changeInvNumber = async (number: string) => {
     });
     return checkError(res);
 };
+export const stateList = async() => {
+    const res = await fetch(baseUrl  + `api/location/list`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+    });
+    return checkError(res);
+}
+

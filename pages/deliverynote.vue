@@ -1,24 +1,40 @@
+<script setup lang="ts">
+const userData = useUserData();
+const equipment = useEquipment();
+console.log(equipment.value);
+//const userName = userData.value.details.name;
+</script>
 <template>
   <HeaderGoBack :link="'/information'" />
-  <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1>
+  <!-- <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1> -->
   <div class="description">
     <h3 class="title">Сведения об отправителе:</h3>
-    <p class="from">От кого: <span class="from_black">Качур Андрей Леонидович</span></p>
-    <p class="from">Откуда: <span class="from_black">Отдел информатизации</span></p>
+    <p class="from">
+      От кого: <span class="from_black">{{ equipment.accountablePerson.name }}</span>
+    </p>
+    <p class="from">
+      Откуда: <span class="from_black">{{ `${equipment.location.address}, ${equipment.location.name}` }}</span>
+    </p>
     <h3 class="title">Сведения об оборудовании:</h3>
-    <p class="from">Инв.номер: <span class="from_black">12546663212121</span></p>
-    <p class="from">Наиманование: <span class="from_black">Коммутатор</span></p>
+    <p class="from">
+      Инв.номер: <span class="from_black">{{ equipment.inventoryNumber }}</span>
+    </p>
+    <p class="from">
+      Наименование: <span class="from_black">{{ equipment.model.hardwareType.name }}</span>
+    </p>
     <p class="from">Количество: <span class="from_black">1</span></p>
-    <p class="from">Производитель: <span class="from_black">Cisco</span></p>
-    <p class="from">Модель: <span class="from_black">SN2154525</span></p>
+    <p class="from">
+      Производитель: <span class="from_black">{{ equipment.model.vendor.name }}</span>
+    </p>
+    <p class="from">
+      Модель: <span class="from_black">{{ equipment.model.name }}</span>
+    </p>
   </div>
   <div class="button__box">
-    <button class="button button_black">Отмена</button>
+    <NuxtLink to="/information"><button class="button button_black">Отмена</button></NuxtLink>
     <NuxtLink to="/recipient"><button class="button">Продолжить</button></NuxtLink>
   </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .main__title {

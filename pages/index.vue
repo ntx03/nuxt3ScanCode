@@ -18,16 +18,14 @@ const route = useRoute();
  * Стейт с текущим роутом
  */
 const nowPath = usePath();
-
 /**
- *
+ * Проверяем распознанный qrCode по БД ТМЦ
  * @param decodedText - распознанные данные с отсканированного qrCode
  * @param decodedResult - объект с распознанными данными
  */
 const onScan = (decodedText: string, decodedResult: object): void => {
-  const checkUrl = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/i;
+  const checkUrl = /^((http|https):\/\/)?[a-zа-я0-9]+([\-\.]{1}[a-zа-я0-9]+)*\.[a-zа-я]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
   if (decodedText.match(checkUrl)) {
-    debugger;
     alert(`Недопустимое выражение ${decodedText}`);
     return;
   } else if (decodedText.length < 4 || decodedText.length > 25) {
@@ -40,7 +38,6 @@ const onScan = (decodedText: string, decodedResult: object): void => {
       })
       .then((res) => {
         if (res === false) {
-          console.log(res);
           scanText.value = decodedText;
           nowPath.value = route.fullPath;
           navigateTo("/nosearch");
@@ -93,7 +90,7 @@ const onScan = (decodedText: string, decodedResult: object): void => {
   color: white;
   font-size: 12px;
   line-height: 18px;
-  padding: 6px 10px 10px 33px;
+  padding: 10px 10px 10px 33px;
   border-radius: 10px;
   border: none;
   outline: none;

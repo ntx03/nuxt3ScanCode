@@ -9,5 +9,7 @@ export { default as useEquipment } from '../composables/useEquipment';
 export { default as useNavigation } from '../composables/useNavigation';
 export { default as useOpenList } from '../composables/useOpenList';
 export { default as usePath } from '../composables/usePath';
-export { checkErrorJSON, checkError, authorization, changeInvNumber } from '../utils/api';
+export { default as useUserData } from '../composables/useUserData';
+export { checkErrorJSON, checkError, authorization, changeInvNumber, stateList } from '../utils/api';
+export { getName } from '../utils/getUserData';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

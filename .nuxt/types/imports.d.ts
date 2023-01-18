@@ -24,6 +24,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getName: typeof import('../../utils/getUserData')['getName']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isNuxtError: typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']
@@ -71,6 +72,7 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const showError: typeof import('../../node_modules/nuxt/dist/app')['showError']
+  const stateList: typeof import('../../utils/api')['stateList']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -104,6 +106,7 @@ declare global {
   const useSlots: typeof import('vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app')['useState']
   const useTransitionState: typeof import('vue')['useTransitionState']
+  const useUserData: typeof import('../../composables/useUserData')['default']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const withCtx: typeof import('vue')['withCtx']
@@ -140,6 +143,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getName: UnwrapRef<typeof import('../../utils/getUserData')['getName']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isNuxtError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['isNuxtError']>
@@ -187,6 +191,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['showError']>
+    readonly stateList: UnwrapRef<typeof import('../../utils/api')['stateList']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
@@ -220,6 +225,7 @@ declare module 'vue' {
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>
+    readonly useUserData: UnwrapRef<typeof import('../../composables/useUserData')['default']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly withCtx: UnwrapRef<typeof import('vue')['withCtx']>

@@ -35,7 +35,6 @@ const changeID = (e: { target: any }) => {
   openList.value = false;
 };
 const goWatch = (): void => {
-  console.log("click");
   openList.value = !openList.value;
   choseID = getUsers;
   //choseID = getUsers;

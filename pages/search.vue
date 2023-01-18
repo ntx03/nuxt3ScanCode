@@ -21,27 +21,28 @@ const text = useDecoderText();
 /**
  * Ищем ТМЦ по инвентарному или серийному номеру
  */
+
 const goInfirmation = () => {
-  if (invNumber.value.length > 3) {
-    changeInvNumber(invNumber.value)
+  if (invNumber.value.trim().length > 3) {
+    changeInvNumber(invNumber.value.trim())
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (res === false) {
-          if (cerNumber.value.length < 4) {
-            text.value = String(invNumber.value);
+          if (cerNumber.value.trim().length < 4) {
+            text.value = String(invNumber.value.trim());
             nowPath.value = route.fullPath;
             navigateTo("/nosearch");
             return;
           }
-          changeInvNumber(cerNumber.value)
+          changeInvNumber(cerNumber.value.trim())
             .then((res) => {
               return res.json();
             })
             .then((res) => {
               if (res === false) {
-                text.value = String(cerNumber.value);
+                text.value = String(cerNumber.value.trim());
                 nowPath.value = route.fullPath;
                 navigateTo("/nosearch");
               } else {
@@ -63,14 +64,14 @@ const goInfirmation = () => {
         alert(err);
       });
     return;
-  } else if (cerNumber.value.length > 3) {
-    changeInvNumber(cerNumber.value)
+  } else if (cerNumber.value.trim.length > 3) {
+    changeInvNumber(cerNumber.value.trim())
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (res === false) {
-          text.value = String(cerNumber.value);
+          text.value = String(cerNumber.value.trim());
           nowPath.value = route.fullPath;
           navigateTo("/nosearch");
         } else {
@@ -96,7 +97,7 @@ const clear = () => {
  * отключение кнопки очистки,  если пусто в полях ввода
  */
 const disabledButtonClear = () => {
-  if (String(invNumber.value).length === 0 && String(cerNumber.value).length === 0) {
+  if (invNumber.value.trim().length === 0 && String(cerNumber.value.trim()).length === 0) {
     return true;
   } else return false;
 };
@@ -109,7 +110,7 @@ const symbol = /[!@#$%^&*()_+\[=\]{};':"\\|,.<>\/?]+/;
  * проверяем на наличие букв и спецсимволов введенные данные пользователя
  */
 const checkLetter = () => {
-  if (invNumber.value.match(lessers) || invNumber.value.match(symbol) || cerNumber.value.match(symbol)) {
+  if (invNumber.value.match(lessers) || invNumber.value.match(symbol) || cerNumber.value.match(symbol) || invNumber.value.length > 12 || cerNumber.value.length > 25) {
     return false;
   } else return true;
 };
@@ -120,7 +121,7 @@ const disabledButtonSearch = () => {
   if (checkLetter() === false) {
     return true;
   }
-  if (String(invNumber.value).length > 3 || String(cerNumber.value).length > 3) {
+  if (invNumber.value.trim().length > 3 || String(cerNumber.value.trim()).length > 3) {
     return false;
   } else return true;
 };
@@ -132,14 +133,14 @@ const disabledButtonSearch = () => {
     <p class="input__title">Инвентарный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="invNumber" placeholder="Введите инвентарный номер" maxlength="12" />
+      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="invNumber" placeholder="Введите инвентарный номер" />
     </div>
   </div>
   <div class="input__box">
     <p class="input__title">Серийный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="cerNumber" placeholder="Введите серийный номер" maxlength="25" />
+      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="cerNumber" placeholder="Введите серийный номер" />
     </div>
   </div>
   <div class="button__box">

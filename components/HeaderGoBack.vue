@@ -2,6 +2,12 @@
 defineProps<{
   link: string;
 }>();
+
+/**
+ * данные о пользователе
+ */
+const dataUser = useUserData();
+const userName = dataUser.value.details.name;
 </script>
 
 <template>
@@ -11,10 +17,8 @@ defineProps<{
       <NuxtLink :to="link" class="back__text">Назад</NuxtLink>
     </div>
     <div class="header__exit-container">
-      <p class="exit__text">Тамилла С.М.</p>
-      <NuxtLink to="/login"
-        ><img class="exit__icon" src="../assets/exit.svg"
-      /></NuxtLink>
+      <p class="exit__text">{{ getName(userName) }}</p>
+      <NuxtLink to="/login"><img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
     </div>
   </div>
 </template>

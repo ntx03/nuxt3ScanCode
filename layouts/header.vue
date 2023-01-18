@@ -1,3 +1,19 @@
+<script setup lang="ts">
+const navigation = useNavigation();
+/**
+ * данные о пользователе
+ */
+const userData = useUserData();
+const userName = userData.value.details.name;
+function openNavigate() {
+  navigation.value = true;
+}
+
+const clearStorage = () => {
+  //localStorage.removeItem("user");
+};
+</script>
+
 <style scoped lang="scss">
 .header {
   display: flex;
@@ -59,24 +75,14 @@
 }
 </style>
 
-<script setup>
-const navigation = useNavigation();
-
-function openNavigate() {
-  navigation.value = true;
-}
-</script>
-
 <template>
   <div>
     <div class="header">
       <img class="header__logo" src="../assets/logo_2.svg" />
       <p class="header__text">Mob inventory</p>
       <div class="header__exit-container">
-        <p class="exit__text">Тамилла С.М.</p>
-        <NuxtLink to="/login">
-          <img class="exit__icon" src="../assets/exit.svg"
-        /></NuxtLink>
+        <p class="exit__text">{{ getName(userName) }}</p>
+        <NuxtLink to="/login" @click.prevent="clearStorage"> <img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
       </div>
       <!-- <img class="header__burger" src="../assets/burger-menu.svg" @click="openNavigate" /> -->
     </div>

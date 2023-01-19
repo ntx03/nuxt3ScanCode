@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
 const userData = useUserData();
 const equipment = useEquipment();
 console.log(equipment.value);

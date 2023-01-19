@@ -6,6 +6,9 @@ const password = ref("");
 const disabledButton = ref(true);
 const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const user = useUserData();
+const allUsers = useAllUsers();
+const allLocation = useAllLocations();
+const allState = useAllState();
 const getAuth = () => {
   authorization(login.value, password.value)
     .then((res) => {
@@ -16,6 +19,30 @@ const getAuth = () => {
     .then((res) => {
       user.value = res;
       auth.value = true;
+      stateList()
+        .then((res) => {
+          console.log(res);
+          allState.value = res;
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      userList()
+        .then((res) => {
+          console.log(res);
+          allUsers.value = res;
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      locationList()
+        .then((res) => {
+          console.log(res);
+          allLocation.value = res;
+        })
+        .catch((err) => {
+          alert(err);
+        });
       navigateTo("/");
     })
     .catch((err) => {
@@ -24,7 +51,7 @@ const getAuth = () => {
 };
 
 watchEffect(() => {
-  if (password.value.length > 5) {
+  if (password.value.length > 1 && login.value.length > 1) {
     disabledButton.value = false;
   } else disabledButton.value = true;
 });

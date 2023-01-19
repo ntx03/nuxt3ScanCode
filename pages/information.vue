@@ -34,6 +34,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
 const equipment = useEquipment();
 
 const getDate = (date: string) => {

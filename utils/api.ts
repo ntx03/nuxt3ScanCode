@@ -47,13 +47,43 @@ export const changeInvNumber = async (number: string) => {
     });
     return checkError(res);
 };
-export const stateList = async() => {
+/**
+ * Список местоположений
+ * @returns объект с местоположениями
+ */
+export const locationList = async() => {
     const res = await fetch(baseUrl  + `api/location/list`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
         },
     });
-    return checkError(res);
+    return checkErrorJSON(res);
+}
+/**
+ * Список пользователей инвентори
+ * @returns массив с пользователями
+ */
+export const userList = async() => {
+    const res = await fetch(baseUrl  + `api/user/list`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+    });
+    return checkErrorJSON(res);
+}
+/**
+ * Массив с данными состояния оборудования (в резерве, в ремонте)
+ * @returns массив с состояниями 
+ */
+export const stateList = async() => {
+    const res = await fetch(baseUrl  + `api/state/list`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+    });
+    return checkErrorJSON(res);
 }
 

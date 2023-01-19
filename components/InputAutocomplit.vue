@@ -1,7 +1,7 @@
 <template>
   <div class="statistics__find-box-select-container">
     <label class="invoice__input-label">{{ label }}</label>
-    <div class="input__box">
+    <!-- 
       <input type="text" class="statistics__find-box-select" v-model="idInput" @click="goWatch" @touchstart.prevent="goWatch" placeholder="Нажмите, чтобы выбрать" />
       <img src="../assets/arrowDown.svg" class="icon" />
     </div>
@@ -9,20 +9,27 @@
       <p :key="item" v-for="item in choseID" class="statistics__find-box-autocomplete__title" @click="changeID">
         {{ item }}
       </p>
+    </div> -->
+    <div class="input__box">
+      <input autocomplete="off" list="datalistOptions" v-model="idInput" id="exampleDataList" />
     </div>
-    <!-- <input autocomplete="off" list="datalistOptions" v-model="idInput" id="exampleDataList" />
-        <datalist id="datalistOptions">
-            <option :key="item" v-for="item in getUsers">{{ item }}</option>
-        </datalist> -->
+    <datalist id="datalistOptions" class="width">
+      <option :key="item" class="width" v-for="item in getUsers">{{ item }}</option>
+    </datalist>
   </div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
   label: String,
+  data: Array,
 });
 
-const getUsers: string[] = ["Вася Мишин", "Петя Куренков", "Анна Медведева", "Олег Прокопенко", "Михаил Созонов", "Петр Мишин", "Андрей Качур", "Никита Михайлов", "Владимир Мутин"];
+const getUsers: string[] = [];
+console.log(props);
+props.data?.forEach((i) => {
+  getUsers.push(i.name);
+});
 let choseID: string[] = [];
 const idInput = ref("");
 const openList = ref(false);
@@ -51,7 +58,7 @@ const goWatch = (): void => {
       errorID.forEach((i) => {
         result.push(i);
       });
-      choseID = result;
+      choseID = result.sort();
       // if (String(idInput.value).length > 0 && String(choseID).length < 1) {
       //     this.isShowMessage = false;
       // } else this.isShowMessage = true;
@@ -68,6 +75,9 @@ const goWatch = (): void => {
 </script>
 
 <style scoped lang="scss">
+.width {
+  max-width: 200px;
+}
 .input__box {
   width: 90%;
   height: 30px;

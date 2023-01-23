@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const avtorize = useAuth();
 if (avtorize.value === true) {
-  console.log(avtorize.value);
   navigateTo("/");
 }
 </script>

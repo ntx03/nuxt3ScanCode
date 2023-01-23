@@ -14,6 +14,21 @@ const clearStorage = () => {
 };
 </script>
 
+<template>
+  <div>
+    <div class="header">
+      <img class="header__logo" src="../assets/logo_2.svg" />
+      <p class="header__text">Mob inventory</p>
+      <div class="header__exit-container">
+        <p class="exit__text">{{ getName(userName) }}</p>
+        <NuxtLink to="/login" @click.prevent="clearStorage"> <img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
+      </div>
+      <!-- <img class="header__burger" src="../assets/burger-menu.svg" @click="openNavigate" /> -->
+    </div>
+    <slot />
+  </div>
+</template>
+
 <style scoped lang="scss">
 .header {
   display: flex;
@@ -22,7 +37,7 @@ const clearStorage = () => {
   margin: 0 auto 0 auto;
   text-align: center;
   height: 100px;
-  // height: 100px;
+  max-width: 500px;
 }
 
 .header__text {
@@ -74,18 +89,3 @@ const clearStorage = () => {
   margin: auto;
 }
 </style>
-
-<template>
-  <div>
-    <div class="header">
-      <img class="header__logo" src="../assets/logo_2.svg" />
-      <p class="header__text">Mob inventory</p>
-      <div class="header__exit-container">
-        <p class="exit__text">{{ getName(userName) }}</p>
-        <NuxtLink to="/login" @click.prevent="clearStorage"> <img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
-      </div>
-      <!-- <img class="header__burger" src="../assets/burger-menu.svg" @click="openNavigate" /> -->
-    </div>
-    <slot />
-  </div>
-</template>

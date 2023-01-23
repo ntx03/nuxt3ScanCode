@@ -4,7 +4,6 @@ definePageMeta({
 });
 const userData = useUserData();
 const equipment = useEquipment();
-console.log(equipment.value);
 //const userName = userData.value.details.name;
 </script>
 <template>
@@ -16,7 +15,7 @@ console.log(equipment.value);
       От кого: <span class="from_black">{{ equipment.accountablePerson.name }}</span>
     </p>
     <p class="from">
-      Откуда: <span class="from_black">{{ `${equipment.location.address}, ${equipment.location.name}` }}</span>
+      Откуда: <span class="from_black">{{ equipment.location.name }}</span>
     </p>
     <h3 class="title">Сведения об оборудовании:</h3>
     <p class="from">

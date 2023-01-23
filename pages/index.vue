@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { changeInvNumber } from "../utils/api";
+
 definePageMeta({
   layout: "header",
   middleware: ["auth"],
 });
+
 const scanText = useDecoderText();
 /**
  * Записываем сюда данные об распознвнном оборудовании
  */
 const equipment = useEquipment();
-
 /**
  * Данные о текущем роуте
  */
@@ -43,6 +44,7 @@ const onScan = (decodedText: string, decodedResult: object): void => {
           navigateTo("/nosearch");
         } else {
           res.decoderText = decodedText;
+          // console.log(res);
           equipment.value = res;
           navigateTo("/information");
         }

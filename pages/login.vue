@@ -11,17 +11,21 @@ const allLocation = useAllLocations();
 const allState = useAllState();
 const getAuth = () => {
   authorization(login.value, password.value)
-    .then((res) => {
-      console.log(res.headers.get("x-auth-token"));
-      localStorage.setItem("token", res.headers.get("x-auth-token"));
-      return res.json();
+    .then((response) => {
+      console.log(response.headers.get("x-auth-token"));
+      // for (let [key, value] of response.headers) {
+      //   console.log(`${key} = ${value}`);
+      // }
+      localStorage.setItem("token", response.headers.get("x-auth-token"));
+      return response.json();
     })
     .then((res) => {
       user.value = res;
+      //  console.log(res);
       auth.value = true;
       stateList()
         .then((res) => {
-          console.log(res);
+          //  console.log(res);
           allState.value = res;
         })
         .catch((err) => {
@@ -29,7 +33,7 @@ const getAuth = () => {
         });
       userList()
         .then((res) => {
-          console.log(res);
+          //   console.log(res);
           allUsers.value = res;
         })
         .catch((err) => {
@@ -37,7 +41,7 @@ const getAuth = () => {
         });
       locationList()
         .then((res) => {
-          console.log(res);
+          //   console.log(res);
           allLocation.value = res;
         })
         .catch((err) => {

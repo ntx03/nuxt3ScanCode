@@ -17,7 +17,7 @@
     </div>
     <div class="information__box">
       <p class="information__title">Текущее местоположение:</p>
-      <p class="information__content">{{ `${getDate(equipment.location.address)}, ${equipment.location.name}` }}</p>
+      <p class="information__content">{{ getDate(equipment.location.name) }}</p>
     </div>
 
     <div class="information__box">
@@ -37,11 +37,12 @@
 definePageMeta({
   middleware: ["auth"],
 });
+
 const equipment = useEquipment();
 
 const getDate = (date: string) => {
-  if (date.length < 1) {
-    return "Нет";
+  if (date == undefined || date.length < 1) {
+    return "-";
   } else return date;
 };
 
@@ -101,9 +102,4 @@ const createDeliveryNote = () => {
     cursor: pointer;
   }
 }
-// @media (min-width: 500px) {
-//   .information__container {
-//     margin: 0 auto 0 auto;
-//   }
-// }
 </style>

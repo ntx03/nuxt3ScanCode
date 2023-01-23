@@ -23,6 +23,7 @@ const text = useDecoderText();
  */
 
 const goInfirmation = () => {
+  console.log("click");
   if (invNumber.value.trim().length > 3) {
     changeInvNumber(invNumber.value.trim())
       .then((res) => {
@@ -64,7 +65,8 @@ const goInfirmation = () => {
         alert(err);
       });
     return;
-  } else if (cerNumber.value.trim.length > 3) {
+  } else if (cerNumber.value.length > 3) {
+    console.log("поиск по серийному номеру");
     changeInvNumber(cerNumber.value.trim())
       .then((res) => {
         return res.json();
@@ -84,6 +86,8 @@ const goInfirmation = () => {
         alert(err);
       });
     return;
+  } else {
+    alert("Ошибка поиска");
   }
 };
 /**
@@ -110,7 +114,13 @@ const symbol = /[!@#$%^&*()_+\[=\]{};':"\\|,.<>\/?]+/;
  * проверяем на наличие букв и спецсимволов введенные данные пользователя
  */
 const checkLetter = () => {
-  if (invNumber.value.match(lessers) || invNumber.value.match(symbol) || cerNumber.value.match(symbol) || invNumber.value.length > 12 || cerNumber.value.length > 25) {
+  if (
+    invNumber.value.match(lessers) ||
+    invNumber.value.match(symbol) ||
+    cerNumber.value.match(symbol) ||
+    invNumber.value.length > 12 ||
+    cerNumber.value.length > 25
+  ) {
     return false;
   } else return true;
 };
@@ -133,28 +143,44 @@ const disabledButtonSearch = () => {
     <p class="input__title">Инвентарный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="invNumber" placeholder="Введите инвентарный номер" />
+      <input
+        type="text"
+        class="login__input"
+        :class="{ login__input_red: !checkLetter() }"
+        v-model="invNumber"
+        placeholder="Введите инвентарный номер"
+      />
     </div>
   </div>
   <div class="input__box">
     <p class="input__title">Серийный номер:</p>
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/note.svg" />
-      <input type="text" class="login__input" :class="{ login__input_red: !checkLetter() }" v-model="cerNumber" placeholder="Введите серийный номер" />
+      <input
+        type="text"
+        class="login__input"
+        :class="{ login__input_red: !checkLetter() }"
+        v-model="cerNumber"
+        placeholder="Введите серийный номер"
+      />
     </div>
   </div>
   <div class="button__box">
-    <button class="button button__clear" :class="{ button__clear_disabled: disabledButtonClear() }" @click="clear" :disabled="disabledButtonClear()">Очистить</button>
-    <button class="button button__search" :class="{ button__search_disabled: disabledButtonSearch() }" @click="goInfirmation" :disabled="disabledButtonSearch()">Поиск</button>
+    <button class="button button__clear" :class="{ button__clear_disabled: disabledButtonClear() }" @click="clear" :disabled="disabledButtonClear()">
+      Очистить
+    </button>
+    <button
+      class="button button__search"
+      :class="{ button__search_disabled: disabledButtonSearch() }"
+      @click="goInfirmation"
+      :disabled="disabledButtonSearch()"
+    >
+      Поиск
+    </button>
   </div>
   <Navigate />
 </template>
 <style scoped lang="scss">
-.header {
-  display: flex;
-  width: 90%;
-  margin: 10px auto 10px auto;
-}
 .back__container {
   display: flex;
   margin: 0;

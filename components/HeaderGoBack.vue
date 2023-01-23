@@ -72,4 +72,10 @@ const userName = dataUser.value.details.name;
   font-weight: 400;
   color: gray;
 }
+
+@media (min-width: 500px) {
+  .header {
+    width: 400px;
+  }
+}
 </style>

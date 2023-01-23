@@ -13,6 +13,6 @@ export { default as useNavigation } from '../composables/useNavigation';
 export { default as useOpenList } from '../composables/useOpenList';
 export { default as usePath } from '../composables/usePath';
 export { default as useUserData } from '../composables/useUserData';
-export { checkErrorJSON, checkError, authorization, changeInvNumber, locationList, userList, stateList } from '../utils/api';
+export { checkErrorJSON, checkError, authorization, changeInvNumber, locationList, userList, stateList, createDeliveryNote } from '../utils/api';
 export { getName } from '../utils/getUserData';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

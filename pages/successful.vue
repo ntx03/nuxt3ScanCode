@@ -1,37 +1,32 @@
+<template>
+  <HeaderGoBack :link="'/recipient'" />
+  <div class="successful">
+    <p class="successful__title">Накладная № {{ numberDelivery }} создана успешно!</p>
+    <NuxtLink to="/" class="successful__link">На главную</NuxtLink>
+  </div>
+  <Navigate />
+</template>
+
 <script setup lang="ts">
+const numberDelivery = useNumberDeliveryNote();
 definePageMeta({
   middleware: ["auth"],
 });
 </script>
 
-<template>
-  <HeaderGoBack :link="'/recipient'" />
-  <div class="error">
-    <h2 class="error__title">При создании накладной возникла ошибка.</h2>
-    <h2 class="error__title">Попробуйте еще раз!</h2>
-    <NuxtLink class="error__link" to="/recipient">Назад</NuxtLink>
-  </div>
-
-  <Navigate />
-</template>
-
 <style lang="scss" scoped>
-.error {
-  margin: 80px auto 0 auto;
-}
-.error__title {
+.successful__title {
   width: 250px;
-  margin: 0px auto 10px auto;
+  margin: 30px auto 10px auto;
   text-align: center;
   padding: 0 20px 0 20px;
   color: $buttonGreen;
   font-size: 16px;
   line-height: 25px;
 }
-
-.error__link {
+.successful__link {
   display: block;
-  margin: 40px auto 40px auto;
+  margin: 40px auto 30px auto;
   width: 100px;
   height: 30px;
   border-radius: 10px;
@@ -40,7 +35,7 @@ definePageMeta({
   text-decoration: none;
   font-size: 12px;
   line-height: 16px;
-  padding: 6.5px 0 5px 30px;
+  padding: 6.5px 0 5px 18px;
   box-sizing: border-box;
   &:hover {
     cursor: pointer;

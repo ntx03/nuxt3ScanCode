@@ -2,10 +2,10 @@
 definePageMeta({
   middleware: ["auth"],
 });
-const userData = useUserData();
+
 const equipment = useEquipment();
-//const userName = userData.value.details.name;
 </script>
+
 <template>
   <HeaderGoBack :link="'/information'" />
   <!-- <h1 class="main__title">Накладная <span class="main__title_black">0000111:</span></h1> -->
@@ -95,7 +95,7 @@ const equipment = useEquipment();
     cursor: pointer;
   }
   &_black {
-    background-color: rgba(0, 0, 0, 0.79);
+    background-color: $black;
   }
 }
 </style>

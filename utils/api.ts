@@ -34,7 +34,7 @@ export const authorization = async (login: string, password: string) => {
       Authorization: `Basic ${btoa(`${login}:${password}`)}`,
     },
   });
-  return checkError(res);
+  return res;
 };
 /**
  * Проверяем на наличие инвентарного номера в базе данных

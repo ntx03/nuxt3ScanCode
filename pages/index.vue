@@ -67,7 +67,7 @@ const onScan = (decodedText: string, decodedResult: object): void => {
 .header {
   display: flex;
   flex-direction: column;
-  background-color: $colorHeader;
+  background-color: $black;
   margin: 0 auto 20px auto;
   text-align: center;
   // height: 100px;

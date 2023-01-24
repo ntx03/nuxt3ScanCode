@@ -100,6 +100,7 @@ declare global {
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
   const useLink: typeof import('vue-router')['useLink']
   const useNavigation: typeof import('../../composables/useNavigation')['default']
+  const useNumberDeliveryNote: typeof import('../../composables/useNumberDeliveryNote')['default']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
   const useOpenList: typeof import('../../composables/useOpenList')['default']
   const usePath: typeof import('../../composables/usePath')['default']
@@ -225,6 +226,7 @@ declare module 'vue' {
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useNavigation: UnwrapRef<typeof import('../../composables/useNavigation')['default']>
+    readonly useNumberDeliveryNote: UnwrapRef<typeof import('../../composables/useNumberDeliveryNote')['default']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useOpenList: UnwrapRef<typeof import('../../composables/useOpenList')['default']>
     readonly usePath: UnwrapRef<typeof import('../../composables/usePath')['default']>

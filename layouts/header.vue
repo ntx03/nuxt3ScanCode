@@ -5,12 +5,9 @@ const navigation = useNavigation();
  */
 const userData = useUserData();
 const userName = userData.value.details.name;
-function openNavigate() {
-  navigation.value = true;
-}
 
 const clearStorage = () => {
-  //localStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 </script>
 

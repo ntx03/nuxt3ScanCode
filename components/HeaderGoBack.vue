@@ -8,6 +8,10 @@ defineProps<{
  */
 const dataUser = useUserData();
 const userName = dataUser.value.details.name;
+
+const logout = () => {
+  localStorage.removeItem("token");
+};
 </script>
 
 <template>
@@ -18,7 +22,7 @@ const userName = dataUser.value.details.name;
     </div>
     <div class="header__exit-container">
       <p class="exit__text">{{ getName(userName) }}</p>
-      <NuxtLink to="/login"><img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
+      <NuxtLink to="/login" @click="logout"><img class="exit__icon" src="../assets/exit.svg" /></NuxtLink>
     </div>
   </div>
 </template>

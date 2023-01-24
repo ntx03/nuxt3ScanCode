@@ -1,23 +1,32 @@
 <script setup lang="ts">
-//import { authorization } from "../utils/api";
 const auth = useAuth();
-const login = ref("");
-const password = ref("");
-const disabledButton = ref(true);
-const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const user = useUserData();
 const allUsers = useAllUsers();
 const allLocation = useAllLocations();
 const allState = useAllState();
+
+const login = ref("");
+const password = ref("");
+const disabledButton = ref(true);
+const errorLogin = reactive({ state: true });
+const errorServer = ref(true);
+
+/**
+ * Проходим авторизацию
+ */
 const getAuth = () => {
   authorization(login.value, password.value)
     .then((response) => {
-      console.log(response.headers.get("x-auth-token"));
-      // for (let [key, value] of response.headers) {
-      //   console.log(`${key} = ${value}`);
-      // }
-      localStorage.setItem("token", response.headers.get("x-auth-token"));
-      return response.json();
+      if (response.ok) {
+        console.log(response.headers.get("x-auth-token"));
+        localStorage.setItem("token", response.headers.get("x-auth-token"));
+        return response.json();
+      } else if (response.status == 401) {
+        errorLogin.state = false;
+      } else if (response.status == 500) {
+        errorServer.value = false;
+      }
+      return Promise.reject(`Ошибка: ${response.status}`);
     })
     .then((res) => {
       user.value = res;
@@ -50,11 +59,15 @@ const getAuth = () => {
       navigateTo("/");
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
 };
 
 watchEffect(() => {
+  if (password.value || login.value) {
+    errorLogin.value = true;
+    errorServer.value = true;
+  }
   if (password.value.length > 1 && login.value.length > 1) {
     disabledButton.value = false;
   } else disabledButton.value = true;
@@ -72,6 +85,10 @@ watchEffect(() => {
     <div class="login__input-container">
       <img class="login__icon-input" src="../assets/lock.svg" />
       <input type="password" class="login__input" v-model="password" placeholder="Введите пароль" />
+    </div>
+    <div class="login__error-box">
+      <p class="login__error-server" :class="{ 'login__error-server_none': errorServer }">Ошибка сервера</p>
+      <p class="login__error-login" :class="{ 'login__error-login_none': errorLogin }">Неправильный логин или пароль</p>
     </div>
     <button class="login__button" :class="{ login__button_disabled: disabledButton }" @click="getAuth" :disabled="disabledButton">Войти</button>
   </div>
@@ -135,6 +152,31 @@ watchEffect(() => {
   &:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+}
+.login__error-box {
+  width: 200px;
+  height: 20px;
+  margin: -8px auto 10px auto;
+}
+.login__error-login {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  text-align: center;
+  color: red;
+  &_none {
+    display: none;
+  }
+}
+.login__error-server {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  text-align: center;
+  color: red;
+  &_none {
+    display: none;
   }
 }
 .login__button_disabled {

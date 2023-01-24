@@ -1,13 +1,15 @@
+<script lang="ts" setup>
+function goBack() {
+  navigateTo("/");
+}
+</script>
+
 <template>
   <section class="invoice">
     <div class="invoice__title-container">
       <h2 class="invoice__title">Создать накладную</h2>
       <button class="invoice__button">
-        <img
-          src="../assets/cross_black.svg"
-          class="invoice__icon-close"
-          @click="goBack"
-        />
+        <img src="../assets/cross_black.svg" class="invoice__icon-close" @click="goBack" />
       </button>
     </div>
     <div class="invoice__input-container">
@@ -31,12 +33,6 @@
     </div>
   </section>
 </template>
-
-<script lang="ts" setup>
-function goBack() {
-  navigateTo("/");
-}
-</script>
 
 <style lang="scss" scoped>
 .invoice {

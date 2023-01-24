@@ -20,5 +20,25 @@ export default defineNuxtRouteMiddleware((to, from) => {
             navigateTo("/information");
         }
     }
+    if (to.path === "/search") {
+        if (auth.value === true) {
+            navigateTo("/search");
+        }
+    }
+    if (to.path === "/error") {
+        if (auth.value === true) {
+            navigateTo("/error");
+        }
+    }
+    if (to.path === "/successful") {
+        if (auth.value === true) {
+            navigateTo("/successful");
+        }
+    }
+    if (to.path === "/nosearch") {
+        if (auth.value === true) {
+            navigateTo("/nosearch");
+        }
+    }
     navigateTo("/login");
 });

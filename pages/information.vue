@@ -1,3 +1,21 @@
+<script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const equipment = useEquipment();
+
+const getDate = (date: string) => {
+  if (date == undefined || date.length < 1) {
+    return "-";
+  } else return date;
+};
+
+const create = () => {
+  navigateTo("/deliverynote");
+};
+</script>
+
 <template>
   <HeaderGoBack :link="'/search'" />
   <div class="information__container">
@@ -29,27 +47,9 @@
       <p class="information__content">{{ getDate(equipment.state.name) }}</p>
     </div>
   </div>
-  <button class="information__button" @click="createDeliveryNote">Добавить в накладную</button>
+  <button class="information__button" @click="create">Добавить в накладную</button>
   <Navigate />
 </template>
-
-<script setup lang="ts">
-definePageMeta({
-  middleware: ["auth"],
-});
-
-const equipment = useEquipment();
-
-const getDate = (date: string) => {
-  if (date == undefined || date.length < 1) {
-    return "-";
-  } else return date;
-};
-
-const createDeliveryNote = () => {
-  navigateTo("/deliverynote");
-};
-</script>
 
 <style scoped lang="scss">
 .information__container {

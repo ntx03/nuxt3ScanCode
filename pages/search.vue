@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const route = useRoute();
 const nowPath = usePath();
 
@@ -23,7 +27,6 @@ const text = useDecoderText();
  */
 
 const goInfirmation = () => {
-  console.log("click");
   if (invNumber.value.trim().length > 3) {
     changeInvNumber(invNumber.value.trim())
       .then((res) => {
@@ -66,7 +69,6 @@ const goInfirmation = () => {
       });
     return;
   } else if (cerNumber.value.length > 3) {
-    console.log("поиск по серийному номеру");
     changeInvNumber(cerNumber.value.trim())
       .then((res) => {
         return res.json();
@@ -136,6 +138,7 @@ const disabledButtonSearch = () => {
   } else return true;
 };
 </script>
+
 <template>
   <HeaderGoBack :link="'/'" />
   <h1 class="main__title">Укажите инвентарный или серийный номер оборудования:</h1>
@@ -180,6 +183,7 @@ const disabledButtonSearch = () => {
   </div>
   <Navigate />
 </template>
+
 <style scoped lang="scss">
 .back__container {
   display: flex;
@@ -293,7 +297,7 @@ const disabledButtonSearch = () => {
   }
 }
 .button__clear {
-  background-color: rgba(0, 0, 0, 0.79);
+  background-color: $black;
   padding: 0 0 2px 0px;
   &_disabled {
     opacity: 0.5;

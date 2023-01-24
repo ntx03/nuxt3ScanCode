@@ -1,24 +1,3 @@
-<template>
-  <div class="statistics__find-box-select-container">
-    <label class="invoice__input-label">{{ label }}</label>
-    <!-- 
-      <input type="text" class="statistics__find-box-select" v-model="idInput" @click="goWatch" @touchstart.prevent="goWatch" placeholder="Нажмите, чтобы выбрать" />
-      <img src="../assets/arrowDown.svg" class="icon" />
-    </div>
-    <div class="statistics__find-box-autocomplete" :class="{ 'statistics__find-box-autocomplete_none': !openList }">
-      <p :key="item" v-for="item in choseID" class="statistics__find-box-autocomplete__title" @click="changeID">
-        {{ item }}
-      </p>
-    </div> -->
-    <div class="input__box">
-      <input autocomplete="off" list="datalistOptions" v-model="idInput" id="exampleDataList" />
-    </div>
-    <datalist id="datalistOptions" class="width">
-      <option :key="item" class="width" v-for="item in getUsers">{{ item }}</option>
-    </datalist>
-  </div>
-</template>
-
 <script setup lang="ts">
 const props = defineProps({
   label: String,
@@ -26,7 +5,6 @@ const props = defineProps({
 });
 
 const getUsers: string[] = [];
-console.log(props);
 props.data?.forEach((i) => {
   getUsers.push(i.name);
 });
@@ -73,6 +51,27 @@ const goWatch = (): void => {
   });
 };
 </script>
+
+<template>
+  <div class="statistics__find-box-select-container">
+    <label class="invoice__input-label">{{ label }}</label>
+    <!-- 
+      <input type="text" class="statistics__find-box-select" v-model="idInput" @click="goWatch" @touchstart.prevent="goWatch" placeholder="Нажмите, чтобы выбрать" />
+      <img src="../assets/arrowDown.svg" class="icon" />
+    </div>
+    <div class="statistics__find-box-autocomplete" :class="{ 'statistics__find-box-autocomplete_none': !openList }">
+      <p :key="item" v-for="item in choseID" class="statistics__find-box-autocomplete__title" @click="changeID">
+        {{ item }}
+      </p>
+    </div> -->
+    <div class="input__box">
+      <input autocomplete="off" list="datalistOptions" v-model="idInput" id="exampleDataList" />
+    </div>
+    <datalist id="datalistOptions" class="width">
+      <option :key="item" class="width" v-for="item in getUsers">{{ item }}</option>
+    </datalist>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .width {

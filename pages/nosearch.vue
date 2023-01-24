@@ -1,12 +1,7 @@
-<template>
-  <HeaderGoBack :link="`${path}`" />
-  <h2 class="error__title">{{ `Оборудование с инв/серийным номером № ${decoderText} не найдено!` }}</h2>
-  <p class="error__text">Проверьте корректность инвентарного или серийного номера!</p>
-  <button class="button__error" @click="back">Назад</button>
-  <Navigate />
-</template>
-
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
 /**
  * берем отсюда путь с которого пришли
  */
@@ -22,6 +17,14 @@ const back = () => {
  */
 const decoderText = useDecoderText();
 </script>
+
+<template>
+  <HeaderGoBack :link="`${path}`" />
+  <h2 class="error__title">{{ `Оборудование с инв/серийным номером № ${decoderText} не найдено!` }}</h2>
+  <p class="error__text">Проверьте корректность инвентарного или серийного номера!</p>
+  <button class="button__error" @click="back">Назад</button>
+  <Navigate />
+</template>
 
 <style scoped lang="scss">
 .error__title {
@@ -50,7 +53,7 @@ const decoderText = useDecoderText();
   color: white;
   border-radius: 10px;
   margin: 0 auto 20px auto;
-  background-color: $blue;
+  background-color: $black;
   border: none;
   &:hover {
     opacity: 0.8;

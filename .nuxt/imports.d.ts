@@ -10,6 +10,7 @@ export { default as useAuth } from '../composables/useAuth';
 export { default as useDecoderText } from '../composables/useDecoderText';
 export { default as useEquipment } from '../composables/useEquipment';
 export { default as useNavigation } from '../composables/useNavigation';
+export { default as useNumberDeliveryNote } from '../composables/useNumberDeliveryNote';
 export { default as useOpenList } from '../composables/useOpenList';
 export { default as usePath } from '../composables/usePath';
 export { default as useUserData } from '../composables/useUserData';

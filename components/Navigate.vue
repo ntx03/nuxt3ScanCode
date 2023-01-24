@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <div class="navigation__container">
     <NuxtLink to="/" class="navigation__item"
@@ -20,8 +22,6 @@
     >
   </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .navigation__container {

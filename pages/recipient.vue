@@ -7,6 +7,7 @@ const state = useAllState();
 const locationState = useAllLocations();
 const users = useAllUsers();
 const equipment = useEquipment();
+const numberDeliveryNote = useNumberDeliveryNote();
 
 const mol = ref("");
 const local = ref("");
@@ -39,11 +40,11 @@ const createDelivery = () => {
   let recipientId: string;
   let sourceLocationId: string = equipment.value.location.id;
   let equipmentId: string = equipment.value.id;
-  console.log(equipment.value);
+  // console.log(equipment.value);
   usersArr.forEach((i: any) => {
     if (mol.value === i.name) {
       recipientId = i.id;
-      i.locations.forEach((locate) => {
+      i.locations.forEach((locate: string) => {
         if (locate.name == local.value) {
           destinationLocationId = locate.id;
         }
@@ -53,16 +54,14 @@ const createDelivery = () => {
 
   createDeliveryNote(senderId, courierName, destinationLocationId, recipientId, sourceLocationId, equipmentId)
     .then((res: any) => {
+      console.log(res.consignment);
+      numberDeliveryNote.value = res[0].consignment.number;
       console.log(res);
+      navigateTo("/successful");
     })
     .catch((err: any) => {
-      console.log(err);
+      alert(err);
     });
-
-  console.log(`Отправитель ${equipment.value.accountablePerson.name} id: ${senderId}`);
-  console.log(`Получатель ${mol.value} id: ${recipientId}`);
-  console.log(`Местоположение ${local.value} id: ${destinationLocationId}`);
-  console.log(courierName);
 };
 watch(mol, function () {
   let arr: string[] = [];
@@ -140,20 +139,31 @@ watch(mol, function () {
   </div>
   <div class="invoice__button-container">
     <button class="invoice__button cancel" @click="clearInput">Очистить</button>
-    <button
-      class="invoice__button cancel"
-      @click="
-        () => {
-          navigateTo(`/error`);
-        }
-      "
-    >
-      На страницу error
-    </button>
+
     <button class="invoice__button ok" :class="{ ok_disabled: disableSearch() }" :disabled="disableSearch()" @click="createDelivery">
       Отправить
     </button>
   </div>
+  <button
+    class="invoice__button cancel"
+    @click="
+      () => {
+        navigateTo(`/successful`);
+      }
+    "
+  >
+    На страницу successful
+  </button>
+  <button
+    class="invoice__button cancel"
+    @click="
+      () => {
+        navigateTo(`/error`);
+      }
+    "
+  >
+    На страницу error
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -245,7 +255,7 @@ watch(mol, function () {
   width: 120px;
   border: none;
   color: white;
-  background-color: rgba(0, 0, 0, 0.79);
+  background-color: $black;
   transition: 0.3s;
   &:hover {
     cursor: pointer;
